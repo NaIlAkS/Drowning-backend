@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5001" ,"https://frontend-mtkt.onrender.com"], // Allowed origins
+    origin: ["http://localhost:5173", "http://localhost:5001" ,"https://drowning-flask.onrender.com","https://frontend-mtkt.onrender.com"], // Allowed origins
     methods: ["GET", "POST"], // Allowed methods
   },
 });
@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 4050;
 // CORS Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5001","https://frontend-mtkt.onrender.com"], // Allowed origins
+    origin: ["http://localhost:5173", "http://localhost:5001","https://drowning-flask.onrender.com","https://frontend-mtkt.onrender.com"], // Allowed origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true,
   })
@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
 
 // Video Stream Route
 app.get("/video-stream", (req, res) => {
-  res.redirect("http://127.0.0.1:5001/detect-stream");
+  res.redirect("https://drowning-flask.onrender.com/detect-stream");
 });
 
 // Detect Drowning Endpoint
@@ -82,7 +82,7 @@ app.post("/detect-drowning", async (req, res) => {
       video_file: videoBuffer,
     };
 
-    const response = await axios.post("http://127.0.0.1:5001/detect", formData);
+    const response = await axios.post("https://drowning-flask.onrender.com/detect", formData);
 
     if (response.data.drowning_detected) {
       io.emit("drowningAlert", { videoId });
