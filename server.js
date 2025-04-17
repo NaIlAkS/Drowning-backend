@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 4050;
 // CORS Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5001"], // Allowed origins
+    origin: ["http://localhost:5173", "http://localhost:5001","https://frontend-mtkt.onrender.com"], // Allowed origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true,
   })
