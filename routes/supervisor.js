@@ -130,7 +130,7 @@ router.post("/upload", upload.single("video"), async (req, res) => {
 
     // ✅ Send video for real-time drowning detection
     console.log("📡 Sending video ID for detection:", newVideo.rows[0].id);
-    await axios.post("http://127.0.0.1:5001/detect", {
+    await axios.post("https://drowning-flask.onrender.com/detect", {
       videoId: newVideo.rows[0].id
     });
 
