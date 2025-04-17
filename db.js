@@ -1,12 +1,11 @@
 const { Pool } = require('pg');
-require('dotenv').config();
 
+// Use the database URL directly from Render (replace with your actual URL)
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    connectionString: process.env.DATABASE_URL,  // Render provides this environment variable
+    ssl: {
+        rejectUnauthorized: false,  // Required for secure connections on Render
+    },
 });
 
 // Test the connection
@@ -18,3 +17,4 @@ pool.connect()
     .catch(err => console.error('❌ Database connection error:', err.stack));
 
 module.exports = pool;
+
